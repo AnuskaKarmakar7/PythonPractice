@@ -1,0 +1,53 @@
+#Anuthor- Anuska Karmakar, anuskakarmakar7@gmail.com
+#problem - ABCD will be encrypted to = 3 random letter + reverse of rest letters except first two letters + first two letters
+import string
+import random
+
+def takeString(*newStr):
+    newStr=input("Enter a new word you want to encrypt: ")
+    return(newStr)
+
+def encrypt(*words):
+    words=takeString()
+    # print(words)
+    if len(words)<3:
+        lessThan3=words[::-1]
+        return (lessThan3)
+    else:
+        slice1=words[0:2]
+        # print(slice1)
+        slice2=words[2:len(words)]
+        # print(slice2)
+        rev=slice2[::-1]
+        # print(rev)
+        random1=''.join(random.choices(string.ascii_lowercase , k=3))
+        gibb=random1
+        # print(gibb)
+        finalWord=gibb+rev+slice1
+        return (str.lower(finalWord))
+
+
+def decrypt(*newWord):
+    newWord = encrypt()
+    print(newWord)
+    choice=input("do you want to decrypt? y/n:  ")
+
+    if choice=="y":
+        if len(newWord)<3:
+            print ((newWord[::-1]))
+        else:
+            d_slice1=newWord[0:3]
+            #print(d_slice1)
+            d_slice2=newWord[len(newWord)-2:len(newWord)]
+            #print(d_slice2)
+            d_slice3=newWord[3:len(newWord)-2]
+            #print(d_slice3)
+            newRev=d_slice3[::-1]
+            originalWord=d_slice2+newRev
+            print ((originalWord))
+    elif choice=="n":
+        print("the program ends here")
+    else:
+        print("invalid input")
+
+decrypt()
